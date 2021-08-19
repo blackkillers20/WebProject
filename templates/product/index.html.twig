@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+<a class="btn btn-primary" href="{{ path ('create_product') }}">Create New Product</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price:</th>
+            <th scope="col">Description</th>
+            <th scope="col">DateAdded</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr>
+            <td scope="row">{{ product.name }}</td>
+            <td scope="row">{{ product.price }}</td>
+            <td scope="row">{{ product.description }}</td>
+            <td scope="row">{{ product.DateAdded | date("d/m/Y")}}</td>
+            <td scope="row">
+            {% for a in product.CAT %}
+                  <a href="{{ path('category_detail', {'id' : a.id }) }}">
+                       {{ a.Name }}
+                  </a>
+                  <br>
+                {% endfor %}
+            </td>
+            <td scope="row"> 
+                <a class="btn btn-info" href="{{ path ( 'product.detail' , {'id' : product.id } ) }}">Detail</a>
+                <a class="btn btn-warning" href="{{ path ( 'update_product' , {'id' : product.id } ) }}">Update</a>
+                <a class="btn btn-danger" href="{{ path ( 'delete_product' , {'id' : product.id } ) }}"
+                                          onclick = "return confirm('Are you sure to delete ?')"
+                >Delete</a>
+            </td>
+        </tr> 
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}

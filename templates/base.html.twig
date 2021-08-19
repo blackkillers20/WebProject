@@ -1,0 +1,39 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Shop{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('css/bootstrap.min.css') }}">
+    {% endblock %}
+    
+    {% block javascripts %}  
+    <script src="{{ asset ('js/bootstrap.bundle.min.js') }} "></script>
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="navbar-nav">
+            <a href="{{ path('view_product') }}" class="btn btn-light">
+                Manage
+            </a>
+            <a href="{{ path('view_category') }}" class="btn btn-light">
+                Category
+            </a>
+        </div>
+        
+        <a href="{{ path('home') }}" class="navbar-brand">
+            Home
+        </a>
+        <a href="{{ path('cart') }}" class="btn btn-light">
+                Cart
+            </a>
+    </nav>
+{% endblock %}
+
+{% block body %}{% endblock %}
+</body>
+</html>

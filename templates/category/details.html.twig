@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Category Detail {% endblock %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <a class="btn btn-primary" href="{{ path ("view_category")}}"> View Category </a> 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Category ID</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Games</th>
+
+            </tr>
+        </thead>
+        <tbody>    
+            <tr>
+                <td scope="row">{{ category.id }}</td>
+                <td scope="row">{{ category.Name }}</td>
+                <td scope="row">
+                    {% for product in category.Products %}
+                        <a href="{{ path ('product.detail', {'id' : product.id }) }}">
+                              {{ product.name }}
+                        </a>
+                        <br>
+                    {% endfor %}    
+                </td>
+        
+{% endblock %}
